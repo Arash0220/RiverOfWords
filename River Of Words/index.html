@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linguistic River Race</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Press Start 2P', cursive;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #b0e0e6, #87CEEB);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+      position: relative;
+    }
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 800px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(4px);
+      border: 4px double #008b8b;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #008b8b;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    /* Game Area */
+    #game-area {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-image: url('assets/river_background.jpg');
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
+      border: 4px groove #5F9EA0;
+      border-radius: 10px;
+    }
+    #boat {
+      position: absolute;
+      left: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      transition: left 0.5s ease;
+      z-index: 10;
+    }
+    /* Obstacles */
+    .obstacle {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-image: url('assets/rock.png');
+      background-size: cover;
+      z-index: 5;
+    }
+    /* Answer Options */
+    .answer-option {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #008b8b;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      font-family: 'Press Start 2P', cursive;
+      margin: 0.5rem;
+      display: inline-block;
+      min-width: 150px;
+      text-align: center;
+      word-wrap: break-word;
+      max-width: 200px;
+    }
+    .answer-option:hover {
+      background-color: #006868;
+      transform: scale(1.05);
+    }
+    .answer-option:active {
+      transform: scale(1);
+    }
+    .correct-answer {
+      background-color: #32cd32;
+      animation: pulse 2s infinite;
+    }
+    .wrong-answer {
+      background-color: #dc143c;
+      animation: shake 0.5s;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    /* Game Over Overlay */
+    .game-over-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.5rem;
+      z-index: 100;
+      display: none;
+    }
+    .game-over-content {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      color: #222;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border: 3px solid #b8860b;
+    }
+    .play-again-button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: #008b8b;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      font-family: 'Press Start 2P', cursive;
+      margin-top: 1rem;
+    }
+    .play-again-button:hover {
+      background-color: #006868;
+      transform: scale(1.05);
+    }
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f0f0f0;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #555;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Linguistic River Race</h1>
+    <div id="game-area">
+      <img id="boat" src="assets/boat.png" alt="Boat">
+    </div>
+    <div id="question-phrase"></div>
+    <div id="input-area">
+      <div id="answer-options-container"></div>
+    </div>
+    <div id="message-box"></div>
+    <div class="game-over-overlay">
+      <div class="game-over-content">
+        <h2>Game Over</h2>
+        <p>Final Score: <span id="final-score"></span></p>
+        <button class="play-again-button">Play Again</button>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    Created by Arashveer Singh
+  </footer>
+  <audio id="rock-sound" src="assets/rock_sound.mp3" preload="auto"></audio>
+  <script>
+    const boat = document.getElementById('boat');
+    const questionPhraseDisplay = document.getElementById('question-phrase');
+    const answerOptionsContainer = document.getElementById('answer-options-container');
+    const messageBox = document.getElementById('message-box');
+    const gameOverOverlay = document.querySelector('.game-over-overlay');
+    const finalScoreDisplay = document.getElementById('final-score');
+    const playAgainButton = document.querySelector('.play-again-button');
+    const gameArea = document.getElementById('game-area');
+    const rockSound = document.getElementById('rock-sound');
+
+    let currentQuestionIndex = 0;
+    let boatPosition = 5;
+    const boatSpeed = 10;
+    let score = 0;
+    let gameRunning = false;
+    let shuffledQuestions = [];
+
+    // Load Questions from JSON
+    const gameData = [
+      {"phrase": "What does 'gari' mean?", "correctAnswer": "top, blouse, shirt", "wrongAnswers": ["pants", "hat"]},
+      {"phrase": "What does 'tanchut' mean?", "correctAnswer": "pants, trousers", "wrongAnswers": ["shirt", "hat"]},
+      {"phrase": "What does 'tupi' mean?", "correctAnswer": "hat, cap", "wrongAnswers": ["shirt", "pants"]},
+      {"phrase": "What does 'belakang' mean?", "correctAnswer": "back", "wrongAnswers": ["front", "side"]},
+      {"phrase": "What does 'brang' mean?", "correctAnswer": "shoulder", "wrongAnswers": ["arm", "neck"]},
+      {"phrase": "What does 'buk' mean?", "correctAnswer": "hair", "wrongAnswers": ["beard", "eyebrow"]},
+      {"phrase": "What does 'burit' mean?", "correctAnswer": "buttocks", "wrongAnswers": ["stomach", "chest"]},
+      {"phrase": "What does 'dada' mean?", "correctAnswer": "chest", "wrongAnswers": ["stomach", "back"]},
+      {"phrase": "What does 'idung' mean?", "correctAnswer": "nose", "wrongAnswers": ["ear", "eye"]},
+      {"phrase": "What does 'jari' mean?", "correctAnswer": "arm, hand", "wrongAnswers": ["leg", "foot"]},
+      {"phrase": "What does 'kaki' mean?", "correctAnswer": "leg, foot", "wrongAnswers": ["arm", "hand"]},
+      {"phrase": "What does 'mata' mean?", "correctAnswer": "eye", "wrongAnswers": ["ear", "nose"]},
+      {"phrase": "What does 'nyawa' mean?", "correctAnswer": "mouth", "wrongAnswers": ["nose", "ear"]},
+      {"phrase": "What does 'pala' mean?", "correctAnswer": "head", "wrongAnswers": ["neck", "face"]},
+      {"phrase": "What does 'pending' mean?", "correctAnswer": "ear", "wrongAnswers": ["nose", "eye"]}
+    ];
+
+    function initializeGame() {
+      shuffledQuestions = shuffleArray([...gameData]);
+      startGame();
+    }
+
+    // Shuffle Array Function
+    function shuffleArray(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    // Display a Question
+    function displayQuestion() {
+      if (currentQuestionIndex >= shuffledQuestions.length || boatPosition >= 95) {
+        gameOver(true);
+        return;
+      }
+      const currentQuestion = shuffledQuestions[currentQuestionIndex];
+      questionPhraseDisplay.textContent = currentQuestion.phrase;
+      answerOptionsContainer.innerHTML = '';
+      const options = shuffleArray([currentQuestion.correctAnswer, ...currentQuestion.wrongAnswers]);
+      options.forEach(option => {
+        const optionButton = document.createElement('button');
+        optionButton.classList.add('answer-option');
+        optionButton.textContent = option;
+        optionButton.addEventListener('click', () => handleOptionSelect(option));
+        answerOptionsContainer.appendChild(optionButton);
+      });
+    }
+
+    // Handle Option Selection
+    function handleOptionSelect(selectedOption) {
+      if (!gameRunning) return;
+      const currentQuestion = shuffledQuestions[currentQuestionIndex];
+      const answerButtons = Array.from(answerOptionsContainer.children);
+      answerButtons.forEach(button => button.disabled = true);
+      if (selectedOption === currentQuestion.correctAnswer) {
+        messageBox.textContent = "Correct! Keep going!";
+        score += 10;
+        const correctButton = answerButtons.find(
+          button => button.textContent === currentQuestion.correctAnswer
+        );
+        if (correctButton) correctButton.classList.add('correct-answer');
+        moveBoatForward();
+        currentQuestionIndex++;
+        setTimeout(() => {
+          messageBox.textContent = '';
+          displayQuestion();
+        }, 1500);
+      } else {
+        messageBox.textContent = "Incorrect! Watch out for rocks!";
+        const wrongButton = answerButtons.find(
+          button => button.textContent === selectedOption
+        );
+        const correctButton = answerButtons.find(
+          button => button.textContent === currentQuestion.correctAnswer
+        );
+        if (wrongButton) wrongButton.classList.add('wrong-answer');
+        if (correctButton) correctButton.classList.add('correct-answer');
+        spawnObstacle();
+        setTimeout(() => {
+          messageBox.textContent = '';
+          displayQuestion();
+        }, 1500);
+      }
+    }
+
+    // Move the Boat Forward
+    function moveBoatForward() {
+      boatPosition += boatSpeed;
+      if (boatPosition > 95) boatPosition = 95;
+      boat.style.left = `${boatPosition}%`;
+    }
+
+    // Spawn Obstacle in Front of the Boat
+    function spawnObstacle() {
+      rockSound.currentTime = 0; // Reset sound to start
+      rockSound.play(); // Play sound effect
+      setTimeout(() => {
+        rockSound.pause(); // Stop sound after 2 seconds
+      }, 2000);
+
+      const obstacle = document.createElement('div');
+      obstacle.classList.add('obstacle');
+      const boatLeft = parseFloat(boat.style.left) || 5;
+      obstacle.style.left = `${boatLeft + 10}%`; // Place the rock slightly ahead of the boat
+      obstacle.style.top = '50%'; // Keep it at the boat's level
+      gameArea.appendChild(obstacle);
+      setTimeout(() => {
+        obstacle.remove();
+      }, 2000); // Remove the rock after 2 seconds
+    }
+
+    // Game Over
+    function gameOver(win) {
+      gameRunning = false;
+      gameOverOverlay.style.display = 'flex';
+      finalScoreDisplay.textContent = score;
+    }
+
+    // Start the Game
+    function startGame() {
+      gameRunning = true;
+      gameOverOverlay.style.display = 'none';
+      currentQuestionIndex = 0;
+      score = 0;
+      boatPosition = 5;
+      boat.style.left = `${boatPosition}%`;
+      messageBox.textContent = '';
+      displayQuestion();
+    }
+
+    // Restart the Game
+    playAgainButton.addEventListener('click', startGame);
+
+    // Initialize the game when the page loads
+    window.addEventListener('DOMContentLoaded', initializeGame);
+  </script>
+</body>
+</html>

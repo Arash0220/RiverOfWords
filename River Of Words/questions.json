@@ -1,0 +1,182 @@
+[
+    {
+      "phrase": "What does 'gari' mean?",
+      "correctAnswer": "top, blouse, shirt",
+      "wrongAnswers": ["pants", "hat"]
+    },
+    {
+      "phrase": "What does 'tanchut' mean?",
+      "correctAnswer": "pants, trousers",
+      "wrongAnswers": ["shirt", "hat"]
+    },
+    {
+      "phrase": "What does 'tanchut puntung' mean?",
+      "correctAnswer": "short pants",
+      "wrongAnswers": ["long pants", "shirt"]
+    },
+    {
+      "phrase": "What does 'tupi' mean?",
+      "correctAnswer": "hat, cap",
+      "wrongAnswers": ["shirt", "pants"]
+    },
+    {
+      "phrase": "What does 'belakang' mean?",
+      "correctAnswer": "back",
+      "wrongAnswers": ["front", "side"]
+    },
+    {
+      "phrase": "What does 'brang' mean?",
+      "correctAnswer": "shoulder",
+      "wrongAnswers": ["arm", "neck"]
+    },
+    {
+      "phrase": "What does 'buk' mean?",
+      "correctAnswer": "hair",
+      "wrongAnswers": ["beard", "eyebrow"]
+    },
+    {
+      "phrase": "What does 'bulu bansu' mean?",
+      "correctAnswer": "eyebrow",
+      "wrongAnswers": ["eyelash", "hair"]
+    },
+    {
+      "phrase": "What does 'burit' mean?",
+      "correctAnswer": "buttocks",
+      "wrongAnswers": ["stomach", "chest"]
+    },
+    {
+      "phrase": "What does 'dada' mean?",
+      "correctAnswer": "chest",
+      "wrongAnswers": ["stomach", "back"]
+    },
+    {
+      "phrase": "What does 'dilah' mean?",
+      "correctAnswer": "tongue",
+      "wrongAnswers": ["teeth", "lips"]
+    },
+    {
+      "phrase": "What does 'gusi' mean?",
+      "correctAnswer": "gum",
+      "wrongAnswers": ["teeth", "tongue"]
+    },
+    {
+      "phrase": "What does 'idung' mean?",
+      "correctAnswer": "nose",
+      "wrongAnswers": ["ear", "eye"]
+    },
+    {
+      "phrase": "What does 'janggut' mean?",
+      "correctAnswer": "beard",
+      "wrongAnswers": ["mustache", "eyebrow"]
+    },
+    {
+      "phrase": "What does 'jari' mean?",
+      "correctAnswer": "arm, hand",
+      "wrongAnswers": ["leg", "foot"]
+    },
+    {
+      "phrase": "What does 'kaki' mean?",
+      "correctAnswer": "leg, foot",
+      "wrongAnswers": ["arm", "hand"]
+    },
+    {
+      "phrase": "What does 'kening' mean?",
+      "correctAnswer": "forehead",
+      "wrongAnswers": ["cheek", "chin"]
+    },
+    {
+      "phrase": "What does 'kuyu' mean?",
+      "correctAnswer": "cheek",
+      "wrongAnswers": ["forehead", "chin"]
+    },
+    {
+      "phrase": "What does 'leka mata' mean?",
+      "correctAnswer": "eyeball",
+      "wrongAnswers": ["eyelid", "eyebrow"]
+    },
+    {
+      "phrase": "What does 'lengan' mean?",
+      "correctAnswer": "lower arm, upper arm",
+      "wrongAnswers": ["hand", "shoulder"]
+    },
+    {
+      "phrase": "What does 'mata' mean?",
+      "correctAnswer": "eye",
+      "wrongAnswers": ["ear", "nose"]
+    },
+    {
+      "phrase": "What does 'mua' mean?",
+      "correctAnswer": "face",
+      "wrongAnswers": ["head", "neck"]
+    },
+    {
+      "phrase": "What does 'ngeli' mean?",
+      "correctAnswer": "teeth",
+      "wrongAnswers": ["gum", "tongue"]
+    },
+    {
+      "phrase": "What does 'nyawa' mean?",
+      "correctAnswer": "mouth",
+      "wrongAnswers": ["nose", "ear"]
+    },
+    {
+      "phrase": "What does 'pala' mean?",
+      "correctAnswer": "head",
+      "wrongAnswers": ["neck", "face"]
+    },
+    {
+      "phrase": "What does 'pegu' mean?",
+      "correctAnswer": "neck",
+      "wrongAnswers": ["head", "shoulder"]
+    },
+    {
+      "phrase": "What does 'pending' mean?",
+      "correctAnswer": "ear",
+      "wrongAnswers": ["nose", "eye"]
+    },
+    {
+      "phrase": "What does 'perut' mean?",
+      "correctAnswer": "stomach, tummy",
+      "wrongAnswers": ["chest", "back"]
+    },
+    {
+      "phrase": "What does 'pinggang' mean?",
+      "correctAnswer": "waist",
+      "wrongAnswers": ["stomach", "chest"]
+    },
+    {
+      "phrase": "What does 'pusat' mean?",
+      "correctAnswer": "navel, belly button",
+      "wrongAnswers": ["stomach", "waist"]
+    },
+    {
+      "phrase": "What does 'sumit' mean?",
+      "correctAnswer": "moustache",
+      "wrongAnswers": ["beard", "eyebrow"]
+    },
+    {
+      "phrase": "What does 'tangan' mean?",
+      "correctAnswer": "hand",
+      "wrongAnswers": ["arm", "finger"]
+    },
+    {
+      "phrase": "What does 'tisi' mean?",
+      "correctAnswer": "side",
+      "wrongAnswers": ["front", "back"]
+    },
+    {
+      "phrase": "What does 'tubuh' mean?",
+      "correctAnswer": "body",
+      "wrongAnswers": ["head", "leg"]
+    },
+    {
+      "phrase": "What does 'tuchum' mean?",
+      "correctAnswer": "smile",
+      "wrongAnswers": ["laugh", "cry"]
+    },
+    {
+      "phrase": "What does 'untak' mean?",
+      "correctAnswer": "brain",
+      "wrongAnswers": ["heart", "liver"]
+    }
+  ]
